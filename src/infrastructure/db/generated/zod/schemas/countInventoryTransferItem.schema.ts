@@ -1,0 +1,10 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { InventoryTransferItemOrderByWithRelationInputObjectSchema as InventoryTransferItemOrderByWithRelationInputObjectSchema } from './objects/InventoryTransferItemOrderByWithRelationInput.schema';
+import { InventoryTransferItemWhereInputObjectSchema as InventoryTransferItemWhereInputObjectSchema } from './objects/InventoryTransferItemWhereInput.schema';
+import { InventoryTransferItemWhereUniqueInputObjectSchema as InventoryTransferItemWhereUniqueInputObjectSchema } from './objects/InventoryTransferItemWhereUniqueInput.schema';
+import { InventoryTransferItemCountAggregateInputObjectSchema as InventoryTransferItemCountAggregateInputObjectSchema } from './objects/InventoryTransferItemCountAggregateInput.schema';
+
+export const InventoryTransferItemCountSchema: z.ZodType<Prisma.InventoryTransferItemCountArgs> = z.object({ orderBy: z.union([InventoryTransferItemOrderByWithRelationInputObjectSchema, InventoryTransferItemOrderByWithRelationInputObjectSchema.array()]).optional(), where: InventoryTransferItemWhereInputObjectSchema.optional(), cursor: InventoryTransferItemWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), select: z.union([ z.literal(true), InventoryTransferItemCountAggregateInputObjectSchema ]).optional() }).strict() as unknown as z.ZodType<Prisma.InventoryTransferItemCountArgs>;
+
+export const InventoryTransferItemCountZodSchema = z.object({ orderBy: z.union([InventoryTransferItemOrderByWithRelationInputObjectSchema, InventoryTransferItemOrderByWithRelationInputObjectSchema.array()]).optional(), where: InventoryTransferItemWhereInputObjectSchema.optional(), cursor: InventoryTransferItemWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), select: z.union([ z.literal(true), InventoryTransferItemCountAggregateInputObjectSchema ]).optional() }).strict();

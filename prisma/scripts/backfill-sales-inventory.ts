@@ -1,6 +1,4 @@
-import { PrismaClient, DocumentType, MovementType } from '../../src/infrastructure/db/generated/prisma/client'; // MANUAL EDIT: adjust if custom output path differs
-
-const prisma = new PrismaClient();
+import { prisma, Prisma, DocumentType, MovementType } from '../../src/infrastructure/db/prisma';
 
 async function main() {
   console.log('Starting backfill...');
@@ -37,7 +35,7 @@ async function main() {
 
   let migratedCount = 0;
   for (const variant of variantsWithStock) {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const existingStock = await tx.warehouseStock.findUnique({
         where: { warehouseId_variantId: { warehouseId: warehouse.id, variantId: variant.id } },
       });

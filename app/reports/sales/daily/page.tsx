@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { BarChart3, Calendar, History, TrendingUp, Wallet } from 'lucide-react';
+import { BarChart3, Calendar, TrendingUp, Wallet } from 'lucide-react';
 import { SectionCard } from '@/modules/sales/components/SectionCard';
 import { ReportTable } from '@/modules/sales/components/ReportTable';
 import { getDailySalesAction } from '@/src/app/actions/reports';
@@ -16,7 +16,7 @@ export default function DailySalesReport() {
     async function load() {
       setLoading(true);
       const res = await getDailySalesAction(date);
-      if (res.success) setData(res.data);
+      if (res.success && res.data) setData(res.data);
       setLoading(false);
     }
     load();

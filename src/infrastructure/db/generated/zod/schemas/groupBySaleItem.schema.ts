@@ -1,0 +1,15 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { SaleItemWhereInputObjectSchema as SaleItemWhereInputObjectSchema } from './objects/SaleItemWhereInput.schema';
+import { SaleItemOrderByWithAggregationInputObjectSchema as SaleItemOrderByWithAggregationInputObjectSchema } from './objects/SaleItemOrderByWithAggregationInput.schema';
+import { SaleItemScalarWhereWithAggregatesInputObjectSchema as SaleItemScalarWhereWithAggregatesInputObjectSchema } from './objects/SaleItemScalarWhereWithAggregatesInput.schema';
+import { SaleItemScalarFieldEnumSchema } from './enums/SaleItemScalarFieldEnum.schema';
+import { SaleItemCountAggregateInputObjectSchema as SaleItemCountAggregateInputObjectSchema } from './objects/SaleItemCountAggregateInput.schema';
+import { SaleItemMinAggregateInputObjectSchema as SaleItemMinAggregateInputObjectSchema } from './objects/SaleItemMinAggregateInput.schema';
+import { SaleItemMaxAggregateInputObjectSchema as SaleItemMaxAggregateInputObjectSchema } from './objects/SaleItemMaxAggregateInput.schema';
+import { SaleItemAvgAggregateInputObjectSchema as SaleItemAvgAggregateInputObjectSchema } from './objects/SaleItemAvgAggregateInput.schema';
+import { SaleItemSumAggregateInputObjectSchema as SaleItemSumAggregateInputObjectSchema } from './objects/SaleItemSumAggregateInput.schema';
+
+export const SaleItemGroupBySchema: z.ZodType<Prisma.SaleItemGroupByArgs> = z.object({ where: SaleItemWhereInputObjectSchema.optional(), orderBy: z.union([SaleItemOrderByWithAggregationInputObjectSchema, SaleItemOrderByWithAggregationInputObjectSchema.array()]).optional(), having: SaleItemScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(SaleItemScalarFieldEnumSchema), _count: z.union([ z.literal(true), SaleItemCountAggregateInputObjectSchema ]).optional(), _min: SaleItemMinAggregateInputObjectSchema.optional(), _max: SaleItemMaxAggregateInputObjectSchema.optional(), _avg: SaleItemAvgAggregateInputObjectSchema.optional(), _sum: SaleItemSumAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.SaleItemGroupByArgs>;
+
+export const SaleItemGroupByZodSchema = z.object({ where: SaleItemWhereInputObjectSchema.optional(), orderBy: z.union([SaleItemOrderByWithAggregationInputObjectSchema, SaleItemOrderByWithAggregationInputObjectSchema.array()]).optional(), having: SaleItemScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(SaleItemScalarFieldEnumSchema), _count: z.union([ z.literal(true), SaleItemCountAggregateInputObjectSchema ]).optional(), _min: SaleItemMinAggregateInputObjectSchema.optional(), _max: SaleItemMaxAggregateInputObjectSchema.optional(), _avg: SaleItemAvgAggregateInputObjectSchema.optional(), _sum: SaleItemSumAggregateInputObjectSchema.optional() }).strict();

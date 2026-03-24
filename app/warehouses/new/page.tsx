@@ -30,14 +30,14 @@ export default function NewWarehousePage() {
     formData.append('payload', JSON.stringify(payload));
 
     const result = await createWarehouseAction(formData);
-    if (result.success) {
+    if (result.success && result.data) {
       setSuccess(`Warehouse ${result.data.name} created successfully!`);
       setCode('');
       setName('');
       setLocation('');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      setError(result.error);
+      setError(result.error ?? 'Failed to create warehouse');
     }
   };
 

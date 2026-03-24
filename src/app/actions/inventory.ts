@@ -1,6 +1,6 @@
 'use server';
 
-import { auth } from '@/lib/auth'; // TODO: the auth path must be wired to the real better-auth instance
+import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { recordInventoryTransfer } from '@/modules/sales/services/transfers.service';
 import { CreateTransferSchema } from '@/modules/sales/schemas/transfer.schemas';
@@ -26,7 +26,10 @@ export async function createTransferAction(formData: FormData) {
     
     const parsedData = CreateTransferSchema.parse(rawData);
     
-    const transfer = await recordInventoryTransfer(parsedData, userId);
+    const transfer = await recordInventoryTransfer(parsedData, userId) as {
+      id: string;
+      transferNumber: string;
+    };
 
     return { 
       success: true, 
@@ -37,7 +40,7 @@ export async function createTransferAction(formData: FormData) {
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: "Validation failed", details: error.errors };
+      return { success: false, error: "Validation failed", details: error.issues };
     }
     if (error instanceof DomainError) {
       return { success: false, error: error.message };

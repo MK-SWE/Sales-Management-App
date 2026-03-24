@@ -1,0 +1,13 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { WarehouseWhereInputObjectSchema as WarehouseWhereInputObjectSchema } from './objects/WarehouseWhereInput.schema';
+import { WarehouseOrderByWithAggregationInputObjectSchema as WarehouseOrderByWithAggregationInputObjectSchema } from './objects/WarehouseOrderByWithAggregationInput.schema';
+import { WarehouseScalarWhereWithAggregatesInputObjectSchema as WarehouseScalarWhereWithAggregatesInputObjectSchema } from './objects/WarehouseScalarWhereWithAggregatesInput.schema';
+import { WarehouseScalarFieldEnumSchema } from './enums/WarehouseScalarFieldEnum.schema';
+import { WarehouseCountAggregateInputObjectSchema as WarehouseCountAggregateInputObjectSchema } from './objects/WarehouseCountAggregateInput.schema';
+import { WarehouseMinAggregateInputObjectSchema as WarehouseMinAggregateInputObjectSchema } from './objects/WarehouseMinAggregateInput.schema';
+import { WarehouseMaxAggregateInputObjectSchema as WarehouseMaxAggregateInputObjectSchema } from './objects/WarehouseMaxAggregateInput.schema';
+
+export const WarehouseGroupBySchema: z.ZodType<Prisma.WarehouseGroupByArgs> = z.object({ where: WarehouseWhereInputObjectSchema.optional(), orderBy: z.union([WarehouseOrderByWithAggregationInputObjectSchema, WarehouseOrderByWithAggregationInputObjectSchema.array()]).optional(), having: WarehouseScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(WarehouseScalarFieldEnumSchema), _count: z.union([ z.literal(true), WarehouseCountAggregateInputObjectSchema ]).optional(), _min: WarehouseMinAggregateInputObjectSchema.optional(), _max: WarehouseMaxAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.WarehouseGroupByArgs>;
+
+export const WarehouseGroupByZodSchema = z.object({ where: WarehouseWhereInputObjectSchema.optional(), orderBy: z.union([WarehouseOrderByWithAggregationInputObjectSchema, WarehouseOrderByWithAggregationInputObjectSchema.array()]).optional(), having: WarehouseScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(WarehouseScalarFieldEnumSchema), _count: z.union([ z.literal(true), WarehouseCountAggregateInputObjectSchema ]).optional(), _min: WarehouseMinAggregateInputObjectSchema.optional(), _max: WarehouseMaxAggregateInputObjectSchema.optional() }).strict();

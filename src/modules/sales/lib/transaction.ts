@@ -1,4 +1,4 @@
-import { Prisma } from '../../../infrastructure/db/prisma';
+import { PrismaClientKnownRequestError } from '../../../infrastructure/db/prisma';
 
 const MAX_RETRIES = 3;
 
@@ -10,7 +10,7 @@ export async function withSerializableRetry<T>(
     return await operation();
   } catch (error) {
     if (
-      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error instanceof PrismaClientKnownRequestError &&
       error.code === 'P2034' && // Transaction failed due to a write conflict or a deadlock
       retries > 0
     ) {

@@ -39,7 +39,7 @@ export default function NewClientPage() {
     formData.append('payload', JSON.stringify(payload));
 
     const result = await createClientAction(formData);
-    if (result.success) {
+    if (result.success && result.data) {
       setSuccess(`Client ${result.data.name} created successfully!`);
       setCode('');
       setName('');
@@ -48,7 +48,7 @@ export default function NewClientPage() {
       setContactInfo('');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      setError(result.error);
+      setError(result.error ?? 'Failed to create client');
     }
   };
 

@@ -1,12 +1,20 @@
 'use server';
 
-import { auth } from '@/lib/auth'; // TODO: the auth path must be wired to the real better-auth instance
+import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { recordClientPayment } from '@/modules/sales/services/payments.service';
 import { CreatePaymentSchema } from '@/modules/sales/schemas/payment.schemas';
 import { DomainError } from '@/modules/sales/domain/errors';
 import { z } from 'zod';
-import { prisma } from '@/infrastructure/db/prisma';
+import { prisma } from '@/src/infrastructure/db/prisma';
+
+type ClientListItem = {
+  id: string;
+  name: string;
+  code: string;
+  currentBalance: { toString(): string };
+  isOpenAccountEnabled: boolean;
+};
 
 export async function createPaymentAction(formData: FormData) {
   try {
@@ -27,7 +35,10 @@ export async function createPaymentAction(formData: FormData) {
     
     const parsedData = CreatePaymentSchema.parse(rawData);
     
-    const payment = await recordClientPayment(parsedData, userId);
+    const payment = await recordClientPayment(parsedData, userId) as {
+      id: string;
+      paymentNumber: string;
+    };
     
     const client = await prisma.client.findUnique({ where: { id: parsedData.clientId } });
 
@@ -41,7 +52,7 @@ export async function createPaymentAction(formData: FormData) {
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: "Validation failed", details: error.errors };
+      return { success: false, error: "Validation failed", details: error.issues };
     }
     if (error instanceof DomainError) {
       return { success: false, error: error.message };
@@ -56,8 +67,8 @@ export async function getClientsAction() {
     const clients = await prisma.client.findMany({
       where: { isBlocked: false },
       orderBy: { name: 'asc' }
-    });
-    return clients.map(c => ({
+    }) as ClientListItem[];
+    return clients.map((c: ClientListItem) => ({
       id: c.id,
       name: c.name,
       code: c.code,

@@ -1,20 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { motion } from 'motion/react';
-import { ShoppingCart, User, Warehouse, CreditCard, ReceiptText, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { User, Warehouse, CreditCard, CheckCircle2 } from 'lucide-react';
 import { SectionCard } from '@/modules/sales/components/SectionCard';
 import { ProductVariantSearch } from '@/modules/sales/components/ProductVariantSearch';
 import { SaleItemsTable, SaleItem } from '@/modules/sales/components/SaleItemsTable';
 import { MoneyInput } from '@/modules/sales/components/MoneyInput';
 import { FormSubmitButton } from '@/modules/sales/components/FormSubmitButton';
 import { ErrorMessage } from '@/modules/sales/components/ErrorMessage';
-import { getWarehousesAction, getClientsAction } from '@/src/app/actions/master-data';
+import { getWarehousesAction } from '@/src/app/actions/master-data';
+import { getClientsAction } from '@/src/app/actions/clients';
 import { createSaleAction } from '@/src/app/actions/sales';
 
 export default function SalesPage() {
-  const router = useRouter();
   const [warehouses, setWarehouses] = useState<any[]>([]);
   const [clients, setClients] = useState<any[]>([]);
   const [selectedWarehouseId, setSelectedWarehouseId] = useState('');
@@ -102,7 +100,7 @@ export default function SalesPage() {
     formData.append('payload', JSON.stringify(payload));
 
     const result = await createSaleAction(formData);
-    if (result.success) {
+    if (result.success && result.data) {
       setSuccess(`Sale ${result.data.saleNumber} recorded successfully!`);
       setItems([]);
       setAmountPaid('0');
@@ -110,7 +108,7 @@ export default function SalesPage() {
       setNotes('');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      setError(result.error);
+      setError(result.error ?? 'Failed to record sale');
     }
   };
 

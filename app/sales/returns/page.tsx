@@ -1,19 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { motion } from 'motion/react';
-import { RotateCcw, User, Warehouse, ReceiptText, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { RotateCcw, User, Warehouse, ReceiptText, CheckCircle2 } from 'lucide-react';
 import { SectionCard } from '@/modules/sales/components/SectionCard';
 import { ProductVariantSearch } from '@/modules/sales/components/ProductVariantSearch';
 import { ReturnItemsTable, ReturnItem } from '@/modules/sales/components/ReturnItemsTable';
 import { FormSubmitButton } from '@/modules/sales/components/FormSubmitButton';
 import { ErrorMessage } from '@/modules/sales/components/ErrorMessage';
-import { getWarehousesAction, getClientsAction } from '@/src/app/actions/master-data';
+import { getWarehousesAction } from '@/src/app/actions/master-data';
+import { getClientsAction } from '@/src/app/actions/clients';
 import { createReturnAction } from '@/src/app/actions/returns';
 
 export default function ReturnsPage() {
-  const router = useRouter();
   const [warehouses, setWarehouses] = useState<any[]>([]);
   const [clients, setClients] = useState<any[]>([]);
   const [selectedWarehouseId, setSelectedWarehouseId] = useState('');
@@ -93,14 +91,14 @@ export default function ReturnsPage() {
     formData.append('payload', JSON.stringify(payload));
 
     const result = await createReturnAction(formData);
-    if (result.success) {
+    if (result.success && result.data) {
       setSuccess(`Return ${result.data.returnNumber} recorded successfully!`);
       setItems([]);
       setNotes('');
       setOriginalSaleId('');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      setError(result.error);
+      setError(result.error ?? 'Failed to process return');
     }
   };
 

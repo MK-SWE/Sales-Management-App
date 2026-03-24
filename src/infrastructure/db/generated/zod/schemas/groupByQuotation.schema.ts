@@ -1,0 +1,13 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { QuotationWhereInputObjectSchema as QuotationWhereInputObjectSchema } from './objects/QuotationWhereInput.schema';
+import { QuotationOrderByWithAggregationInputObjectSchema as QuotationOrderByWithAggregationInputObjectSchema } from './objects/QuotationOrderByWithAggregationInput.schema';
+import { QuotationScalarWhereWithAggregatesInputObjectSchema as QuotationScalarWhereWithAggregatesInputObjectSchema } from './objects/QuotationScalarWhereWithAggregatesInput.schema';
+import { QuotationScalarFieldEnumSchema } from './enums/QuotationScalarFieldEnum.schema';
+import { QuotationCountAggregateInputObjectSchema as QuotationCountAggregateInputObjectSchema } from './objects/QuotationCountAggregateInput.schema';
+import { QuotationMinAggregateInputObjectSchema as QuotationMinAggregateInputObjectSchema } from './objects/QuotationMinAggregateInput.schema';
+import { QuotationMaxAggregateInputObjectSchema as QuotationMaxAggregateInputObjectSchema } from './objects/QuotationMaxAggregateInput.schema';
+
+export const QuotationGroupBySchema: z.ZodType<Prisma.QuotationGroupByArgs> = z.object({ where: QuotationWhereInputObjectSchema.optional(), orderBy: z.union([QuotationOrderByWithAggregationInputObjectSchema, QuotationOrderByWithAggregationInputObjectSchema.array()]).optional(), having: QuotationScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(QuotationScalarFieldEnumSchema), _count: z.union([ z.literal(true), QuotationCountAggregateInputObjectSchema ]).optional(), _min: QuotationMinAggregateInputObjectSchema.optional(), _max: QuotationMaxAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.QuotationGroupByArgs>;
+
+export const QuotationGroupByZodSchema = z.object({ where: QuotationWhereInputObjectSchema.optional(), orderBy: z.union([QuotationOrderByWithAggregationInputObjectSchema, QuotationOrderByWithAggregationInputObjectSchema.array()]).optional(), having: QuotationScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(QuotationScalarFieldEnumSchema), _count: z.union([ z.literal(true), QuotationCountAggregateInputObjectSchema ]).optional(), _min: QuotationMinAggregateInputObjectSchema.optional(), _max: QuotationMaxAggregateInputObjectSchema.optional() }).strict();

@@ -1,0 +1,10 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { ClientLedgerEntryOrderByWithRelationInputObjectSchema as ClientLedgerEntryOrderByWithRelationInputObjectSchema } from './objects/ClientLedgerEntryOrderByWithRelationInput.schema';
+import { ClientLedgerEntryWhereInputObjectSchema as ClientLedgerEntryWhereInputObjectSchema } from './objects/ClientLedgerEntryWhereInput.schema';
+import { ClientLedgerEntryWhereUniqueInputObjectSchema as ClientLedgerEntryWhereUniqueInputObjectSchema } from './objects/ClientLedgerEntryWhereUniqueInput.schema';
+import { ClientLedgerEntryCountAggregateInputObjectSchema as ClientLedgerEntryCountAggregateInputObjectSchema } from './objects/ClientLedgerEntryCountAggregateInput.schema';
+
+export const ClientLedgerEntryCountSchema: z.ZodType<Prisma.ClientLedgerEntryCountArgs> = z.object({ orderBy: z.union([ClientLedgerEntryOrderByWithRelationInputObjectSchema, ClientLedgerEntryOrderByWithRelationInputObjectSchema.array()]).optional(), where: ClientLedgerEntryWhereInputObjectSchema.optional(), cursor: ClientLedgerEntryWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), select: z.union([ z.literal(true), ClientLedgerEntryCountAggregateInputObjectSchema ]).optional() }).strict() as unknown as z.ZodType<Prisma.ClientLedgerEntryCountArgs>;
+
+export const ClientLedgerEntryCountZodSchema = z.object({ orderBy: z.union([ClientLedgerEntryOrderByWithRelationInputObjectSchema, ClientLedgerEntryOrderByWithRelationInputObjectSchema.array()]).optional(), where: ClientLedgerEntryWhereInputObjectSchema.optional(), cursor: ClientLedgerEntryWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), select: z.union([ z.literal(true), ClientLedgerEntryCountAggregateInputObjectSchema ]).optional() }).strict();

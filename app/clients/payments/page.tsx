@@ -1,9 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { motion } from 'motion/react';
-import { Wallet, User, Calendar, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Wallet, User, Calendar, CheckCircle2 } from 'lucide-react';
 import { SectionCard } from '@/modules/sales/components/SectionCard';
 import { MoneyInput } from '@/modules/sales/components/MoneyInput';
 import { FormSubmitButton } from '@/modules/sales/components/FormSubmitButton';
@@ -11,7 +9,6 @@ import { ErrorMessage } from '@/modules/sales/components/ErrorMessage';
 import { getClientsAction, createPaymentAction } from '@/src/app/actions/clients';
 
 export default function ClientPaymentsPage() {
-  const router = useRouter();
   const [clients, setClients] = useState<any[]>([]);
   const [selectedClientId, setSelectedClientId] = useState('');
   const [amount, setAmount] = useState('0');
@@ -51,14 +48,14 @@ export default function ClientPaymentsPage() {
     formData.append('payload', JSON.stringify(payload));
 
     const result = await createPaymentAction(formData);
-    if (result.success) {
+    if (result.success && result.data) {
       setSuccess(`Payment ${result.data.paymentNumber} recorded successfully!`);
-      setNewBalance(result.data.newBalance);
+      setNewBalance(result.data.newBalance ?? null);
       setAmount('0');
       setNotes('');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      setError(result.error);
+      setError(result.error ?? 'Failed to record payment');
     }
   };
 

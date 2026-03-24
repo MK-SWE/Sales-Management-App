@@ -1,0 +1,13 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { WarehouseVariantSettingSelectObjectSchema as WarehouseVariantSettingSelectObjectSchema } from './objects/WarehouseVariantSettingSelect.schema';
+import { WarehouseVariantSettingIncludeObjectSchema as WarehouseVariantSettingIncludeObjectSchema } from './objects/WarehouseVariantSettingInclude.schema';
+import { WarehouseVariantSettingWhereUniqueInputObjectSchema as WarehouseVariantSettingWhereUniqueInputObjectSchema } from './objects/WarehouseVariantSettingWhereUniqueInput.schema';
+import { WarehouseVariantSettingCreateInputObjectSchema as WarehouseVariantSettingCreateInputObjectSchema } from './objects/WarehouseVariantSettingCreateInput.schema';
+import { WarehouseVariantSettingUncheckedCreateInputObjectSchema as WarehouseVariantSettingUncheckedCreateInputObjectSchema } from './objects/WarehouseVariantSettingUncheckedCreateInput.schema';
+import { WarehouseVariantSettingUpdateInputObjectSchema as WarehouseVariantSettingUpdateInputObjectSchema } from './objects/WarehouseVariantSettingUpdateInput.schema';
+import { WarehouseVariantSettingUncheckedUpdateInputObjectSchema as WarehouseVariantSettingUncheckedUpdateInputObjectSchema } from './objects/WarehouseVariantSettingUncheckedUpdateInput.schema';
+
+export const WarehouseVariantSettingUpsertOneSchema: z.ZodType<Prisma.WarehouseVariantSettingUpsertArgs> = z.object({ select: WarehouseVariantSettingSelectObjectSchema.optional(), include: WarehouseVariantSettingIncludeObjectSchema.optional(), where: WarehouseVariantSettingWhereUniqueInputObjectSchema, create: z.union([ WarehouseVariantSettingCreateInputObjectSchema, WarehouseVariantSettingUncheckedCreateInputObjectSchema ]), update: z.union([ WarehouseVariantSettingUpdateInputObjectSchema, WarehouseVariantSettingUncheckedUpdateInputObjectSchema ]) }).strict() as unknown as z.ZodType<Prisma.WarehouseVariantSettingUpsertArgs>;
+
+export const WarehouseVariantSettingUpsertOneZodSchema = z.object({ select: WarehouseVariantSettingSelectObjectSchema.optional(), include: WarehouseVariantSettingIncludeObjectSchema.optional(), where: WarehouseVariantSettingWhereUniqueInputObjectSchema, create: z.union([ WarehouseVariantSettingCreateInputObjectSchema, WarehouseVariantSettingUncheckedCreateInputObjectSchema ]), update: z.union([ WarehouseVariantSettingUpdateInputObjectSchema, WarehouseVariantSettingUncheckedUpdateInputObjectSchema ]) }).strict();

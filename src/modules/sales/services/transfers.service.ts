@@ -1,5 +1,5 @@
 import { 
-  prisma, Decimal, TransferStatus, MovementType, DocumentType 
+  prisma, Prisma, Decimal, TransferStatus, MovementType, DocumentType 
 } from '../../../infrastructure/db/prisma';
 import { InsufficientStockError, InvalidTransferError } from '../domain/errors';
 import { CreateTransferSchema } from '../schemas/transfer.schemas';
@@ -11,7 +11,7 @@ export async function recordInventoryTransfer(input: z.infer<typeof CreateTransf
     throw new InvalidTransferError("Source and destination warehouses must be different");
   }
 
-  return withSerializableRetry(() => prisma.$transaction(async (tx) => {
+  return withSerializableRetry(() => prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     const eventTime = new Date();
     const transferNumber = `TRN-${Date.now()}`;
 

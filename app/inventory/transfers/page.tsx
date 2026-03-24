@@ -1,9 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { motion } from 'motion/react';
-import { ArrowLeftRight, Warehouse, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { ArrowLeftRight, Warehouse, CheckCircle2 } from 'lucide-react';
 import { SectionCard } from '@/modules/sales/components/SectionCard';
 import { ProductVariantSearch } from '@/modules/sales/components/ProductVariantSearch';
 import { TransferItemsTable, TransferItem } from '@/modules/sales/components/TransferItemsTable';
@@ -13,7 +11,6 @@ import { getWarehousesAction } from '@/src/app/actions/master-data';
 import { createTransferAction } from '@/src/app/actions/inventory';
 
 export default function TransfersPage() {
-  const router = useRouter();
   const [warehouses, setWarehouses] = useState<any[]>([]);
   const [fromWarehouseId, setFromWarehouseId] = useState('');
   const [toWarehouseId, setToWarehouseId] = useState('');
@@ -83,13 +80,13 @@ export default function TransfersPage() {
     formData.append('payload', JSON.stringify(payload));
 
     const result = await createTransferAction(formData);
-    if (result.success) {
+    if (result.success && result.data) {
       setSuccess(`Transfer ${result.data.transferNumber} completed successfully!`);
       setItems([]);
       setNotes('');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      setError(result.error);
+      setError(result.error ?? 'Failed to complete transfer');
     }
   };
 

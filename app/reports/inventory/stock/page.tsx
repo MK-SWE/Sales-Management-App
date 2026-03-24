@@ -15,7 +15,7 @@ export default function StockReport() {
     async function load() {
       setLoading(true);
       const res = await getStockReportAction();
-      if (res.success) setData(res.data);
+      if (res.success && res.data) setData(res.data);
       setLoading(false);
     }
     load();

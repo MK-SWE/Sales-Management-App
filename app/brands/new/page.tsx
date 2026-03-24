@@ -29,13 +29,13 @@ export default function NewBrandPage() {
     formData.append('payload', JSON.stringify(payload));
 
     const result = await createBrandAction(formData);
-    if (result.success) {
+    if (result.success && result.data) {
       setSuccess(`Brand ${result.data.name} created successfully!`);
       setName('');
       setDescription('');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      setError(result.error);
+      setError(result.error ?? 'Failed to create brand');
     }
   };
 

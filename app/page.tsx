@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'motion/react';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { 
   ShoppingCart, 
   RotateCcw, 
@@ -70,19 +71,23 @@ export default function HomePage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       {/* Header */}
-      <header className="mb-12">
+      <header className="mb-12 flex justify-between items-start">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="flex-1"
         >
-          <h1 className="text-4xl font-black text-slate-900 tracking-tight mb-3">
+          <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-3">
             Inventory & Sales Dashboard
           </h1>
-          <p className="text-xl text-slate-500 font-medium">
+          <p className="text-xl text-slate-500 dark:text-slate-400 font-medium">
             Manage your operations, track inventory, and monitor performance.
           </p>
         </motion.div>
+        <div className="pt-2">
+          <ThemeToggle />
+        </div>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -95,16 +100,16 @@ export default function HomePage() {
                   <motion.div
                     whileHover={{ scale: 1.02, translateY: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="p-6 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-start gap-4 group"
+                    className="p-6 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-start gap-4 group"
                   >
-                    <div className={`p-3 rounded-xl ${action.color} group-hover:scale-110 transition-transform`}>
+                    <div className={`p-3 rounded-xl ${action.color} dark:bg-opacity-20 group-hover:scale-110 transition-transform`}>
                       {action.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                      <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
                         {action.title}
                       </h3>
-                      <p className="text-sm text-slate-500 font-medium mt-1">
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium mt-1">
                         {action.description}
                       </p>
                     </div>
@@ -148,13 +153,13 @@ export default function HomePage() {
                 <Link key={idx} href={action.href}>
                   <motion.div
                     whileHover={{ x: 4 }}
-                    className="flex items-center justify-between p-4 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+                    className="flex items-center justify-between p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all group"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-slate-100 rounded-lg group-hover:bg-white transition-colors">
+                      <div className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg group-hover:bg-white dark:group-hover:bg-slate-700 transition-colors">
                         {action.icon}
                       </div>
-                      <span className="font-bold text-slate-700 group-hover:text-slate-900">
+                      <span className="font-bold text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white">
                         {action.title}
                       </span>
                     </div>
@@ -165,19 +170,19 @@ export default function HomePage() {
             </div>
           </SectionCard>
 
-          <SectionCard title="System Status" className="bg-slate-50/50">
+          <SectionCard title="Operations Overview" className="bg-slate-50/50 dark:bg-slate-800/50">
             <div className="space-y-4">
-              <div className="flex items-center gap-3 text-sm font-medium text-slate-600">
+              <div className="flex items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-400">
                 <Package className="w-4 h-4" />
-                <span>Inventory Sync: <span className="text-emerald-600 font-bold">Active</span></span>
+                <span>Inventory Basis: <span className="text-emerald-600 dark:text-emerald-400 font-bold">Warehouse Stock</span></span>
               </div>
-              <div className="flex items-center gap-3 text-sm font-medium text-slate-600">
+              <div className="flex items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-400">
                 <Users className="w-4 h-4" />
-                <span>Client Portal: <span className="text-emerald-600 font-bold">Online</span></span>
+                <span>Receivables Basis: <span className="text-emerald-600 dark:text-emerald-400 font-bold">Client Ledger</span></span>
               </div>
-              <div className="pt-4 border-t border-slate-200">
-                <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
-                  Version 1.0.4-stable
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                <p className="text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest">
+                  Review daily sales, stock, and balance reports from the dashboard.
                 </p>
               </div>
             </div>

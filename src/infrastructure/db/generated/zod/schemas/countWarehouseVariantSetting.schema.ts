@@ -1,0 +1,10 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { WarehouseVariantSettingOrderByWithRelationInputObjectSchema as WarehouseVariantSettingOrderByWithRelationInputObjectSchema } from './objects/WarehouseVariantSettingOrderByWithRelationInput.schema';
+import { WarehouseVariantSettingWhereInputObjectSchema as WarehouseVariantSettingWhereInputObjectSchema } from './objects/WarehouseVariantSettingWhereInput.schema';
+import { WarehouseVariantSettingWhereUniqueInputObjectSchema as WarehouseVariantSettingWhereUniqueInputObjectSchema } from './objects/WarehouseVariantSettingWhereUniqueInput.schema';
+import { WarehouseVariantSettingCountAggregateInputObjectSchema as WarehouseVariantSettingCountAggregateInputObjectSchema } from './objects/WarehouseVariantSettingCountAggregateInput.schema';
+
+export const WarehouseVariantSettingCountSchema: z.ZodType<Prisma.WarehouseVariantSettingCountArgs> = z.object({ orderBy: z.union([WarehouseVariantSettingOrderByWithRelationInputObjectSchema, WarehouseVariantSettingOrderByWithRelationInputObjectSchema.array()]).optional(), where: WarehouseVariantSettingWhereInputObjectSchema.optional(), cursor: WarehouseVariantSettingWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), select: z.union([ z.literal(true), WarehouseVariantSettingCountAggregateInputObjectSchema ]).optional() }).strict() as unknown as z.ZodType<Prisma.WarehouseVariantSettingCountArgs>;
+
+export const WarehouseVariantSettingCountZodSchema = z.object({ orderBy: z.union([WarehouseVariantSettingOrderByWithRelationInputObjectSchema, WarehouseVariantSettingOrderByWithRelationInputObjectSchema.array()]).optional(), where: WarehouseVariantSettingWhereInputObjectSchema.optional(), cursor: WarehouseVariantSettingWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), select: z.union([ z.literal(true), WarehouseVariantSettingCountAggregateInputObjectSchema ]).optional() }).strict();

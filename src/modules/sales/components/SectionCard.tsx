@@ -16,11 +16,11 @@ export function SectionCard({ title, children, className = '', delay = 0 }: Sect
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
-      className={`bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden ${className}`}
+      className={`bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden ${className}`}
     >
       {title && (
-        <div className="px-6 py-4 border-bottom border-slate-100 bg-slate-50/50">
-          <h2 className="text-lg font-semibold text-slate-800">{title}</h2>
+        <div className="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+          <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-200">{title}</h2>
         </div>
       )}
       <div className="p-6">

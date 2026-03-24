@@ -1,0 +1,13 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { InventoryTransferWhereInputObjectSchema as InventoryTransferWhereInputObjectSchema } from './objects/InventoryTransferWhereInput.schema';
+import { InventoryTransferOrderByWithAggregationInputObjectSchema as InventoryTransferOrderByWithAggregationInputObjectSchema } from './objects/InventoryTransferOrderByWithAggregationInput.schema';
+import { InventoryTransferScalarWhereWithAggregatesInputObjectSchema as InventoryTransferScalarWhereWithAggregatesInputObjectSchema } from './objects/InventoryTransferScalarWhereWithAggregatesInput.schema';
+import { InventoryTransferScalarFieldEnumSchema } from './enums/InventoryTransferScalarFieldEnum.schema';
+import { InventoryTransferCountAggregateInputObjectSchema as InventoryTransferCountAggregateInputObjectSchema } from './objects/InventoryTransferCountAggregateInput.schema';
+import { InventoryTransferMinAggregateInputObjectSchema as InventoryTransferMinAggregateInputObjectSchema } from './objects/InventoryTransferMinAggregateInput.schema';
+import { InventoryTransferMaxAggregateInputObjectSchema as InventoryTransferMaxAggregateInputObjectSchema } from './objects/InventoryTransferMaxAggregateInput.schema';
+
+export const InventoryTransferGroupBySchema: z.ZodType<Prisma.InventoryTransferGroupByArgs> = z.object({ where: InventoryTransferWhereInputObjectSchema.optional(), orderBy: z.union([InventoryTransferOrderByWithAggregationInputObjectSchema, InventoryTransferOrderByWithAggregationInputObjectSchema.array()]).optional(), having: InventoryTransferScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(InventoryTransferScalarFieldEnumSchema), _count: z.union([ z.literal(true), InventoryTransferCountAggregateInputObjectSchema ]).optional(), _min: InventoryTransferMinAggregateInputObjectSchema.optional(), _max: InventoryTransferMaxAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.InventoryTransferGroupByArgs>;
+
+export const InventoryTransferGroupByZodSchema = z.object({ where: InventoryTransferWhereInputObjectSchema.optional(), orderBy: z.union([InventoryTransferOrderByWithAggregationInputObjectSchema, InventoryTransferOrderByWithAggregationInputObjectSchema.array()]).optional(), having: InventoryTransferScalarWhereWithAggregatesInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), by: z.array(InventoryTransferScalarFieldEnumSchema), _count: z.union([ z.literal(true), InventoryTransferCountAggregateInputObjectSchema ]).optional(), _min: InventoryTransferMinAggregateInputObjectSchema.optional(), _max: InventoryTransferMaxAggregateInputObjectSchema.optional() }).strict();

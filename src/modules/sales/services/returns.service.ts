@@ -1,5 +1,5 @@
 import { 
-  prisma, Decimal, ReturnStatus, DocumentType, MovementType, LedgerEntryType 
+  prisma, Prisma, Decimal, ReturnStatus, DocumentType, MovementType, LedgerEntryType 
 } from '../../../infrastructure/db/prisma';
 import { EntityNotFoundError } from '../domain/errors';
 import { CreateReturnSchema } from '../schemas/sale.schemas';
@@ -7,7 +7,7 @@ import { withSerializableRetry } from '../lib/transaction';
 import { z } from 'zod';
 
 export async function recordSaleReturn(input: z.infer<typeof CreateReturnSchema>, userId: string) {
-  return withSerializableRetry(() => prisma.$transaction(async (tx) => {
+  return withSerializableRetry(() => prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     const eventTime = new Date();
     const returnNumber = `RET-${Date.now()}`;
     let subtotal = new Decimal(0);

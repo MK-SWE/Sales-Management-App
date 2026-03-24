@@ -1,6 +1,5 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/infrastructure/db/generated/prisma/client"
+  provider = "prisma-client-js"
 }
 
 generator zod {
@@ -145,8 +144,8 @@ model ProductVariant {
   SKU            String     @unique
   productId      String
   attributes     Json // e.g. { "color": "red", "size": "XL" }
-  price          Decimal    @db.Decimal(10, 2)
-  compareAtPrice Decimal?   @db.Decimal(10, 2) 
+  price          Decimal    @db.Decimal(12, 2)
+  compareAtPrice Decimal?   @db.Decimal(12, 2) 
   
   // DEPRECATED: Legacy stock. Use WarehouseStock + InventoryMovement instead.
   stock          Int        @default(0)
@@ -249,7 +248,7 @@ model Order {
   quotation         Quotation   @relation(fields: [quotationId], references: [id])
   status            OrderStatus @default(PENDING_PAYMENT)
   items             OrderItem[]
-  totalAmount       Decimal     @db.Decimal(10, 2)
+  totalAmount       Decimal     @db.Decimal(12, 2)
   shippingAddressId String?
   shippingAddress   Address?    @relation(fields: [shippingAddressId], references: [id], onDelete: SetNull)
   snapshotAddress   Json
@@ -267,7 +266,7 @@ model OrderItem {
   ProductVariantId String
   ProductVariant   ProductVariant @relation(fields: [ProductVariantId], references: [id])
   quantity         Int
-  unitPrice        Decimal        @db.Decimal(10, 2)
+  unitPrice        Decimal        @db.Decimal(12, 2)
 
   // ─── Snapshot fields ────────────────────────────────────────────────
   snapshotSKU         String

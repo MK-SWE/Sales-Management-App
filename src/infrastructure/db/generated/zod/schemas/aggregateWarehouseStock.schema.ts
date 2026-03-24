@@ -1,0 +1,14 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { WarehouseStockOrderByWithRelationInputObjectSchema as WarehouseStockOrderByWithRelationInputObjectSchema } from './objects/WarehouseStockOrderByWithRelationInput.schema';
+import { WarehouseStockWhereInputObjectSchema as WarehouseStockWhereInputObjectSchema } from './objects/WarehouseStockWhereInput.schema';
+import { WarehouseStockWhereUniqueInputObjectSchema as WarehouseStockWhereUniqueInputObjectSchema } from './objects/WarehouseStockWhereUniqueInput.schema';
+import { WarehouseStockCountAggregateInputObjectSchema as WarehouseStockCountAggregateInputObjectSchema } from './objects/WarehouseStockCountAggregateInput.schema';
+import { WarehouseStockMinAggregateInputObjectSchema as WarehouseStockMinAggregateInputObjectSchema } from './objects/WarehouseStockMinAggregateInput.schema';
+import { WarehouseStockMaxAggregateInputObjectSchema as WarehouseStockMaxAggregateInputObjectSchema } from './objects/WarehouseStockMaxAggregateInput.schema';
+import { WarehouseStockAvgAggregateInputObjectSchema as WarehouseStockAvgAggregateInputObjectSchema } from './objects/WarehouseStockAvgAggregateInput.schema';
+import { WarehouseStockSumAggregateInputObjectSchema as WarehouseStockSumAggregateInputObjectSchema } from './objects/WarehouseStockSumAggregateInput.schema';
+
+export const WarehouseStockAggregateSchema: z.ZodType<Prisma.WarehouseStockAggregateArgs> = z.object({ orderBy: z.union([WarehouseStockOrderByWithRelationInputObjectSchema, WarehouseStockOrderByWithRelationInputObjectSchema.array()]).optional(), where: WarehouseStockWhereInputObjectSchema.optional(), cursor: WarehouseStockWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), _count: z.union([ z.literal(true), WarehouseStockCountAggregateInputObjectSchema ]).optional(), _min: WarehouseStockMinAggregateInputObjectSchema.optional(), _max: WarehouseStockMaxAggregateInputObjectSchema.optional(), _avg: WarehouseStockAvgAggregateInputObjectSchema.optional(), _sum: WarehouseStockSumAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.WarehouseStockAggregateArgs>;
+
+export const WarehouseStockAggregateZodSchema = z.object({ orderBy: z.union([WarehouseStockOrderByWithRelationInputObjectSchema, WarehouseStockOrderByWithRelationInputObjectSchema.array()]).optional(), where: WarehouseStockWhereInputObjectSchema.optional(), cursor: WarehouseStockWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), _count: z.union([ z.literal(true), WarehouseStockCountAggregateInputObjectSchema ]).optional(), _min: WarehouseStockMinAggregateInputObjectSchema.optional(), _max: WarehouseStockMaxAggregateInputObjectSchema.optional(), _avg: WarehouseStockAvgAggregateInputObjectSchema.optional(), _sum: WarehouseStockSumAggregateInputObjectSchema.optional() }).strict();

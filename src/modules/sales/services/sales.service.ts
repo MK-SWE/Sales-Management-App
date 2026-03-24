@@ -1,5 +1,5 @@
 import { 
-  prisma, Decimal, PaymentMethod, PaymentStatus, SaleStatus, 
+  prisma, Prisma, Decimal, PaymentMethod, PaymentStatus, SaleStatus, 
   DocumentType, MovementType, LedgerEntryType 
 } from '../../../infrastructure/db/prisma';
 import { InsufficientStockError, InvalidClientError, CreditLimitExceededError, EntityNotFoundError, ValidationError } from '../domain/errors';
@@ -8,7 +8,7 @@ import { withSerializableRetry } from '../lib/transaction';
 import { z } from 'zod';
 
 export async function recordSale(input: z.infer<typeof CreateSaleSchema>, userId: string) {
-  return withSerializableRetry(() => prisma.$transaction(async (tx) => {
+  return withSerializableRetry(() => prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     const eventTime = new Date();
     const saleNumber = `SAL-${Date.now()}`;
 
@@ -71,7 +71,7 @@ export async function recordSale(input: z.infer<typeof CreateSaleSchema>, userId
         warehouseId: input.warehouseId,
         clientId: input.clientId,
         cashClientName: input.cashClientName,
-        paymentMethod: input.paymentMethod as PaymentMethod,
+        paymentMethod: input.paymentMethod,
         paymentStatus,
         status: SaleStatus.COMPLETED,
         subtotal,

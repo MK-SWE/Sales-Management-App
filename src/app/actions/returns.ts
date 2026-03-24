@@ -1,6 +1,6 @@
 'use server';
 
-import { auth } from '@/lib/auth'; // TODO: the auth path must be wired to the real better-auth instance
+import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { recordSaleReturn } from '@/modules/sales/services/returns.service';
 import { CreateReturnSchema } from '@/modules/sales/schemas/sale.schemas';
@@ -26,7 +26,11 @@ export async function createReturnAction(formData: FormData) {
     
     const parsedData = CreateReturnSchema.parse(rawData);
     
-    const saleReturn = await recordSaleReturn(parsedData, userId);
+    const saleReturn = await recordSaleReturn(parsedData, userId) as {
+      id: string;
+      returnNumber: string;
+      grandTotal: { toString(): string };
+    };
 
     return { 
       success: true, 
@@ -38,7 +42,7 @@ export async function createReturnAction(formData: FormData) {
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: "Validation failed", details: error.errors };
+      return { success: false, error: "Validation failed", details: error.issues };
     }
     if (error instanceof DomainError) {
       return { success: false, error: error.message };

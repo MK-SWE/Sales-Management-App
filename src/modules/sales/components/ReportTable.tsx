@@ -4,14 +4,16 @@ import { motion } from 'motion/react';
 
 interface Column<T> {
   header: string;
-  accessor: keyof T | ((item: T) => React.ReactNode);
+  accessor: keyof T | string | ((item: T) => React.ReactNode);
   className?: string;
+  render?: (value: React.ReactNode, item: T) => React.ReactNode;
 }
 
 interface ReportTableProps<T> {
   columns: Column<T>[];
   data: T[];
   isLoading?: boolean;
+  loading?: boolean;
   emptyMessage?: string;
 }
 
@@ -19,8 +21,11 @@ export function ReportTable<T extends { id: string | number }>({
   columns,
   data,
   isLoading = false,
+  loading,
   emptyMessage = 'No data found for the selected filters.'
 }: ReportTableProps<T>) {
+  const resolvedLoading = loading ?? isLoading;
+
   return (
     <div className="overflow-x-auto bg-white rounded-xl border border-slate-200 shadow-sm">
       <table className="w-full border-collapse">
@@ -37,7 +42,7 @@ export function ReportTable<T extends { id: string | number }>({
           </tr>
         </thead>
         <tbody>
-          {isLoading ? (
+          {resolvedLoading ? (
             <tr>
               <td colSpan={columns.length} className="px-6 py-12 text-center">
                 <div className="flex flex-col items-center gap-3">
@@ -65,7 +70,9 @@ export function ReportTable<T extends { id: string | number }>({
                   <td key={colIdx} className={`px-6 py-4 text-sm text-slate-700 ${col.className || ''}`}>
                     {typeof col.accessor === 'function'
                       ? col.accessor(item)
-                      : (item[col.accessor] as React.ReactNode)}
+                      : col.render
+                        ? col.render((item as Record<string, React.ReactNode>)[col.accessor], item)
+                        : (item as Record<string, React.ReactNode>)[col.accessor]}
                   </td>
                 ))}
               </motion.tr>

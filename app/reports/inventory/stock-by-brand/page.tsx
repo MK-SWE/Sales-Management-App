@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
-import { Tag, Search } from 'lucide-react';
+import { Tag } from 'lucide-react';
 import { SectionCard } from '@/modules/sales/components/SectionCard';
 import { ReportTable } from '@/modules/sales/components/ReportTable';
 import { getStockReportAction } from '@/src/app/actions/reports';
@@ -28,7 +27,7 @@ export default function StockByBrandReport() {
     async function load() {
       setLoading(true);
       const res = await getStockReportAction({ brandId: selectedBrandId });
-      if (res.success) setData(res.data);
+      if (res.success && res.data) setData(res.data);
       setLoading(false);
     }
     load();

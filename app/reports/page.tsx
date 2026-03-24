@@ -7,9 +7,6 @@ import {
   TrendingUp, 
   Package, 
   Users, 
-  ArrowLeftRight, 
-  Undo2, 
-  History,
   ChevronRight
 } from 'lucide-react';
 import { SectionCard } from '@/modules/sales/components/SectionCard';
@@ -20,8 +17,6 @@ const reportGroups = [
     icon: <BarChart3 className="w-6 h-6 text-blue-600" />,
     reports: [
       { name: 'Daily Sales Summary', href: '/reports/sales/daily', description: 'Total sales and payments for today.' },
-      { name: 'Sales by Product', href: '/reports/sales/products', description: 'Performance of individual items.' },
-      { name: 'Sales by Client', href: '/reports/sales/clients', description: 'Top clients by revenue.' },
     ]
   },
   {
@@ -41,7 +36,6 @@ const reportGroups = [
     reports: [
       { name: 'Client Balance Lookup', href: '/reports/clients/balances', description: 'Outstanding receivables by client.' },
       { name: 'Monthly Client Balance Report', href: '/reports/clients/monthly-report', description: 'Monthly statement of client accounts.' },
-      { name: 'Payment History', href: '/reports/finance/payments', description: 'Detailed log of all client payments.' },
     ]
   }
 ];
@@ -102,10 +96,10 @@ export default function ReportsDashboard() {
         <SectionCard title="Quick Actions">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { label: 'Recent Sales', icon: <History className="w-5 h-5" />, href: '/sales/history' },
-              { label: 'Returns Log', icon: <Undo2 className="w-5 h-5" />, href: '/sales/returns/history' },
-              { label: 'Transfer Log', icon: <ArrowLeftRight className="w-5 h-5" />, href: '/inventory/transfers/history' },
-              { label: 'Client List', icon: <Users className="w-5 h-5" />, href: '/clients' },
+              { label: 'New Sale', icon: <BarChart3 className="w-5 h-5" />, href: '/sales' },
+              { label: 'Sales Return', icon: <Package className="w-5 h-5" />, href: '/sales/returns' },
+              { label: 'Stock Transfer', icon: <TrendingUp className="w-5 h-5" />, href: '/inventory/transfers' },
+              { label: 'Client Payments', icon: <Users className="w-5 h-5" />, href: '/clients/payments' },
             ].map((action) => (
               <Link 
                 key={action.label} 

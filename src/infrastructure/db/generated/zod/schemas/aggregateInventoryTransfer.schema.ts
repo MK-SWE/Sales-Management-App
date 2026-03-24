@@ -1,0 +1,12 @@
+import type { Prisma } from '@prisma/client';
+import * as z from 'zod';
+import { InventoryTransferOrderByWithRelationInputObjectSchema as InventoryTransferOrderByWithRelationInputObjectSchema } from './objects/InventoryTransferOrderByWithRelationInput.schema';
+import { InventoryTransferWhereInputObjectSchema as InventoryTransferWhereInputObjectSchema } from './objects/InventoryTransferWhereInput.schema';
+import { InventoryTransferWhereUniqueInputObjectSchema as InventoryTransferWhereUniqueInputObjectSchema } from './objects/InventoryTransferWhereUniqueInput.schema';
+import { InventoryTransferCountAggregateInputObjectSchema as InventoryTransferCountAggregateInputObjectSchema } from './objects/InventoryTransferCountAggregateInput.schema';
+import { InventoryTransferMinAggregateInputObjectSchema as InventoryTransferMinAggregateInputObjectSchema } from './objects/InventoryTransferMinAggregateInput.schema';
+import { InventoryTransferMaxAggregateInputObjectSchema as InventoryTransferMaxAggregateInputObjectSchema } from './objects/InventoryTransferMaxAggregateInput.schema';
+
+export const InventoryTransferAggregateSchema: z.ZodType<Prisma.InventoryTransferAggregateArgs> = z.object({ orderBy: z.union([InventoryTransferOrderByWithRelationInputObjectSchema, InventoryTransferOrderByWithRelationInputObjectSchema.array()]).optional(), where: InventoryTransferWhereInputObjectSchema.optional(), cursor: InventoryTransferWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), _count: z.union([ z.literal(true), InventoryTransferCountAggregateInputObjectSchema ]).optional(), _min: InventoryTransferMinAggregateInputObjectSchema.optional(), _max: InventoryTransferMaxAggregateInputObjectSchema.optional() }).strict() as unknown as z.ZodType<Prisma.InventoryTransferAggregateArgs>;
+
+export const InventoryTransferAggregateZodSchema = z.object({ orderBy: z.union([InventoryTransferOrderByWithRelationInputObjectSchema, InventoryTransferOrderByWithRelationInputObjectSchema.array()]).optional(), where: InventoryTransferWhereInputObjectSchema.optional(), cursor: InventoryTransferWhereUniqueInputObjectSchema.optional(), take: z.number().optional(), skip: z.number().optional(), _count: z.union([ z.literal(true), InventoryTransferCountAggregateInputObjectSchema ]).optional(), _min: InventoryTransferMinAggregateInputObjectSchema.optional(), _max: InventoryTransferMaxAggregateInputObjectSchema.optional() }).strict();
